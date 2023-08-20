@@ -1,6 +1,6 @@
 package situacao;
 
-import exceptions.DomainException;
+import excecoes.DomainException;
 import orcamento.Orcamento;
 
 import java.math.BigDecimal;

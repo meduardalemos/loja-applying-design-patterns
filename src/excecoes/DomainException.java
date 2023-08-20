@@ -1,4 +1,4 @@
-package exceptions;
+package excecoes;
 
 public class DomainException extends RuntimeException {
 
