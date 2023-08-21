@@ -1,17 +1,24 @@
 import pedido.GeradorPedidoDados;
 import pedido.GeradorPedidoHandler;
+import pedido.acao.EnviarEmailPedido;
+import pedido.acao.SalvarPedidoNoBancoDeDados;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 public class TestePedido {
     public static void main(String[] args) {
-        // Recebendo dados via linha de comando
-        String cliente = args[0];
-        BigDecimal valorOrcamento = new BigDecimal(args[1]);
-        int quantidadeItens = Integer.parseInt(args[2]);
+        String cliente = "Cliente 01";
+        BigDecimal valorOrcamento = new BigDecimal(1000);
+        int quantidadeItens = 5;
 
-        GeradorPedidoDados geradorPedidoDados = new GeradorPedidoDados(cliente, valorOrcamento, quantidadeItens);
-        GeradorPedidoHandler geradorPedidoHandler = new GeradorPedidoHandler(/* DEPENDENCIAS */);
+        GeradorPedidoDados geradorPedidoDados = new GeradorPedidoDados(
+                cliente, valorOrcamento, quantidadeItens
+        );
+        GeradorPedidoHandler geradorPedidoHandler = new GeradorPedidoHandler(
+                Arrays.asList(new SalvarPedidoNoBancoDeDados(),
+                        new EnviarEmailPedido())
+        );
         geradorPedidoHandler.executa(geradorPedidoDados);
     }
 }
